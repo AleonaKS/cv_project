@@ -60,15 +60,21 @@ def load_image_from_url(url: str):
 
 
 @app.get("/")
-async def serve_frontend():
-    frontend_path = "frontend/index.html"
-    if os.path.exists(frontend_path):
-        return FileResponse(frontend_path)
-    else:
-        return JSONResponse(
-            {"error": "Frontend not found. Check file path."},
-            status_code=404
-        )
+async def read_root():
+    with open("frontend/index.html", "r", encoding="utf-8") as f:
+        html_content = f.read()
+    return HTMLResponse(content=html_content)
+
+# @app.get("/")
+# async def serve_frontend():
+#     frontend_path = "frontend/index.html"
+#     if os.path.exists(frontend_path):
+#         return FileResponse(frontend_path)
+#     else:
+#         return JSONResponse(
+#             {"error": "Frontend not found. Check file path."},
+#             status_code=404
+#         )
 
 
 # ---- API маршруты для анализа обложек ----
