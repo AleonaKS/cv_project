@@ -6,12 +6,10 @@ face_cascade = cv2.CascadeClassifier(CASCADE_PATH)
 def detect_faces(image):
     if image is None:
         return []
-
-    # Гарантируем uint8
+ 
     if image.dtype != "uint8":
         image = image.astype("uint8")
-
-    # Гарантируем BGR
+ 
     if len(image.shape) == 3 and image.shape[2] == 3:
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     else:

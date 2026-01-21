@@ -1,0 +1,13 @@
+# .render.yaml
+services:
+  - type: web
+    name: cv-analyzer-backend
+    runtime: python
+    buildCommand: |
+      pip install -r requirements.txt
+    startCommand: uvicorn backend.app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PORT
+        value: $PORT 
+    installCommand: |
+      apt-get update && apt-get install -y tesseract-ocr libtesseract-dev libleptonica-dev

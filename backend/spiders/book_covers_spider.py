@@ -86,5 +86,5 @@ class BookCoversSpider(scrapy.Spider):
         df = pd.DataFrame(self.rows)
         df.to_csv(self.output_csv, index=False)
 
-        self.logger.info(f"📄 CSV saved: {self.output_csv}")
-        self.logger.info(f"🖼 Images saved: {len(self.rows)}")
+        self.logger.info(f"CSV saved: {self.output_csv}")
+        self.logger.info(f"Images saved: {len(self.rows)}")

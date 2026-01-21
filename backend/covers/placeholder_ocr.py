@@ -36,12 +36,11 @@ def detect_placeholder_text(image, min_confidence=30):
     
     processed = preprocess_for_ocr(image)
     
-    # Пробуем разные конфигурации OCR
     configs = [
-        '--psm 6',      # Единый блок текста
-        '--psm 7',      # Одна строка текста
-        '--psm 8',      # Одно слово
-        '--psm 13'      # Сырой текст
+        '--psm 6',     
+        '--psm 7',       
+        '--psm 8',       
+        '--psm 13'      
     ]
     
     all_found_phrases = []
@@ -71,8 +70,7 @@ def detect_placeholder_text(image, min_confidence=30):
         except Exception as e:
             print(f"OCR error with config {config}: {e}")
             continue
-    
-    # Также пробуем простой текст без конфигурации
+     
     try:
         simple_text = pytesseract.image_to_string(processed, lang='rus+eng')
         if simple_text:

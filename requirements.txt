@@ -20,3 +20,5 @@ numpy
 pytube
 ultralytics
 torch
+pytesseract
+tesseract

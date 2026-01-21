@@ -348,27 +348,27 @@ function displaySkatingResults(data) {
 
     container.innerHTML = `
         <div class="video-stats">
-            <h4>📊 Статистика видео</h4>
+            <h4> Статистика видео</h4>
             <div class="stats-grid">
-                <div class="stat-item">⏱ Длительность: ${videoInfo.duration} сек</div>
-                <div class="stat-item">🎞️ FPS: ${videoInfo.fps}</div>
-                <div class="stat-item">🎬 Сцен: ${videoInfo.shots_detected}</div>
-                <div class="stat-item">🔄 Прыжков: ${videoInfo.total_jumps}</div>
+                <div class="stat-item"> Длительность: ${videoInfo.duration} сек</div>
+                <div class="stat-item"> FPS: ${videoInfo.fps}</div>
+                <div class="stat-item"> Сцен: ${videoInfo.shots_detected}</div>
+                <div class="stat-item"> Прыжков: ${videoInfo.total_jumps}</div>
             </div>
         </div>
         
         <div class="timeline-section">
-            <h4>⏰ Временная шкала прыжков</h4>
+            <h4> Временная шкала прыжков</h4>
             <div id="timeline" class="timeline"></div>
         </div>
         
         <div class="jumps-section">
-            <h4>🔍 Детали прыжков</h4>
+            <h4> Детали прыжков</h4>
             <div id="jumpList" class="jump-list"></div>
         </div>
         
         <div class="shots-section">
-            <h4>🎬 Анализ сцен</h4>
+            <h4> Анализ сцен</h4>
             <div id="shotList" class="shot-list"></div>
         </div>
     `;

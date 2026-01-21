@@ -2,7 +2,7 @@
 import cv2
 import numpy as np
 from sklearn.cluster import KMeans
-from backend.covers.placeholder import is_placeholder as check_placeholder  # ИЗМЕНИЛ ИМЯ
+from backend.covers.placeholder import is_placeholder as check_placeholder   
 from backend.covers.colors import color_contrast, warm_cold_ratio
 from backend.covers.face import detect_faces
 from backend.covers.composition import face_position
@@ -43,8 +43,7 @@ def analyze_cover(image):
         placeholder_visual["is_placeholder"] or
         placeholder_ocr["is_placeholder_text"]
     )
-
-    # --- ВСЁ СЧИТАЕМ В ЛЮБОМ СЛУЧАЕ ---
+ 
     colors = dominant_colors(image)
     text = text_density(image)
     edge = edge_density(image)

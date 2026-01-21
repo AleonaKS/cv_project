@@ -1,7 +1,6 @@
 # backend/covers/composition.py
 
-def face_position(image, faces):
-    # ✅ правильная проверка
+def face_position(image, faces): 
     if faces is None or len(faces) == 0:
         return "no_face"
 
