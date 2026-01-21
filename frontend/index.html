@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Анализ обложек книг и видео фигурного катания</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+<body>
+    <div class="container"> 
+ 
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('books', this)">📚 Работа с обложками</button>
+            <button class="tab-button" onclick="showTab('video', this)">⛸️ Работа с видео</button>
+        </div>
+ 
+        <div id="books" class="tab-content active"> 
+            <div class="section">
+                <div class="section">
+                <h3>Работа с обложкой</h3>
+                <div class="upload-grid">
+                    <div class="upload-item"> 
+                        <input type="file" id="fileInput" accept="image/*">
+                    </div>
+                    <div class="upload-item"> 
+                        <input type="text" id="urlInput" placeholder="https://...">
+                    </div>
+                </div>
+                <button class="btn-primary" onclick="analyze()">Анализировать</button>
+            </div>
+
+
+                <div class="filters">
+                    <h4>Фильтры:</h4>
+                    <button class="btn-secondary" onclick="applyFilter('grayscale')">Черно-белый</button>
+                    <button class="btn-secondary" onclick="applyFilter('warm')">Теплый тон</button>
+                    <button class="btn-secondary" onclick="applyFilter('cold')">Холодный тон</button>
+                    <button class="btn-secondary" onclick="toggleColorTools()">🖌️ Замена цвета</button>
+                </div>
+ 
+                <div id="colorTools" style="display: none; margin-top: 20px; padding:15px; border-radius:15px; border:1px solid #eee;">
+                    <h4>Замена цвета</h4>
+                    <div style="display:flex; gap:15px; margin-bottom:5px;">
+                        <div>
+                            <label>Цвет для замены:</label>
+                            <input type="color" id="targetColorPicker" value="#ff0000"> 
+                        </div>
+                        <div>
+                            <label>Новый цвет:</label>
+                            <input type="color" id="newColorPicker" value="#00ff00"> 
+                        </div>
+                    </div>
+                    <div>
+                        <label>Чувствительность: <span id="toleranceValue">30</span></label>
+                        <input type="range" id="toleranceSlider" min="1" max="100" value="30">
+                    </div>
+                    <button class="btn-primary" onclick="applyColorReplacement()" style="margin-top:10px;">Применить</button>
+                </div>
+
+                <div id="analysisResults" class="results" style="display: none; margin-top:20px; padding:15px; border-radius:8px;">
+                    <h4>Обработанное изображение:</h4>
+                    <img id="preview" class="processed-image" style="max-width:100%; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    <h4>Результаты анализа:</h4>
+                    <pre id="result" style="background:#2d3748; color:#e2e8f0; padding:15px; border-radius:6px; overflow-x:auto; font-size:14px;"></pre>
+                </div>
+            </div>
+
+            
+            <div class="section" style="margin-top:30px;">
+                <h3>Похожие обложки</h3>
+                <div class="upload-grid">
+                    <div class="upload-item"> 
+                        <input type="file" id="similarityFile" accept="image/*">
+                    </div>
+                    <div class="upload-item"> 
+                        <input type="text" id="similarityUrl" placeholder="https://...">
+                    </div>
+                </div>
+                <button class="btn-primary" onclick="findSimilar()">Найти похожие</button>
+                <div id="similarityResults" class="similarity-results"></div>
+            </div> 
+            <div class="section" style="margin-top:30px;">
+                <h3>Статистика коллекции</h3>
+                <button class="btn-primary" onclick="showGenreStats()">Загрузить статистику</button>
+                <div id="statsResults"></div>
+            </div>
+        </div>
+
+ 
+        <div id="video" class="tab-content">
+        <div class="section">
+            <h3>Анализ видео фигурного катания</h3>
+
+            <div class="upload-section video-upload">
+            <label>Видеофайл:</label> 
+            <input type="file" id="videoFile" accept="video/*" style="display:none;">
+            <button type="button" onclick="document.getElementById('videoFile').click()" class="btn-secondary">📁 Загрузить файл</button>
+            </div>
+
+            <div class="jump-intervals-section">
+            <label>Интервалы прыжков (секунды, формат: начало-конец)</label>
+            <div id="jumpIntervalsContainer">
+                <div class="jump-interval-input">
+                <input type="text" class="jump-interval" placeholder="75-78" value="75-78">
+                <button type="button" onclick="removeJumpInterval(this)">✖️</button>
+                </div>
+            </div>
+            <button type="button" onclick="addJumpInterval()">➕ Добавить</button>
+            <label><input type="checkbox" id="useManualJumps" checked> Использовать ручные интервалы</label>
+            </div>
+
+            <button type="button" onclick="analyzeVideo()" class="btn-primary" style="margin-top:20px;">Проанализировать</button>
+
+            <div id="jumpStats" style="margin-top:30px;"></div>
+        
+        <div id="videoLoading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p> Обработка видео... </p>
+        </div>
+            <div id="jumpFramesSection" style="margin-top:30px;">
+            <h4 data-icon="📸">Примеры кадров прыжка (с выделением фигуриста)</h4>
+            <div id="jumpFramesContainer" style="display:flex; flex-wrap:wrap; gap:15px; margin-top:15px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

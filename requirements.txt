@@ -1,0 +1,22 @@
+# fastapi
+# uvicorn
+# opencv-python
+# numpy
+# pillow
+# requests
+# scikit-learn
+python-multipart
+fastapi
+uvicorn
+numpy<2
+opencv-python==4.8.1.78
+pillow
+requests
+scikit-learn
+joblib
+pandas
+seaborn
+numpy
+pytube
+ultralytics
+torch
