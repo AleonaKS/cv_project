@@ -33,12 +33,10 @@ def negative_space_ratio(image):
     return 1 - (np.sum(edges > 0) / edges.size)
 
 
-def analyze_cover(image):
-    # ИСПРАВЛЕНИЕ: используем новое имя функции
+def analyze_cover(image): 
     placeholder_visual = check_placeholder(image) 
     placeholder_ocr = detect_placeholder_text(image)
-
-    # ИСПРАВЛЕНИЕ: используем новое имя переменной
+ 
     is_placeholder_result = (
         placeholder_visual["is_placeholder"] or
         placeholder_ocr["is_placeholder_text"]
